@@ -4,6 +4,12 @@ A CLI tool for managing and validating codebase context specifications according
 
 ![Codebase Context](https://raw.githubusercontent.com/Agentic-Insights/codebase-context-spec/main/img/codebase-context.png)
 
+## Learn More About CCS
+
+- 📺 [Watch the CCS Introduction Video](https://youtu.be/g4YuNoLQ1zI)
+- 📄 [Read the CCS RFC on SubStack](https://agenticinsights.substack.com/p/codebase-context-specification-rfc)
+- 📚 [CCS GitHub Repository](https://github.com/Agentic-Insights/codebase-context-spec)
+
 ## Features
 
 - ✅ Validate `.context` directories against CCS spec

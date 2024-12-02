@@ -1,4 +1,4 @@
-# cc-linter
+# cc-cli
 
 A CLI tool for managing and validating codebase context specifications according to the [Codebase Context Specification (CCS)](https://github.com/Agentic-Insights/codebase-context-spec).
 
@@ -14,7 +14,7 @@ A CLI tool for managing and validating codebase context specifications according
 ## Installation
 
 ```bash
-npm install -g cc-linter
+npm install -g cc-cli
 ```
 
 ## Usage
@@ -24,7 +24,7 @@ npm install -g cc-linter
 Checks if your `.context` directory complies with the CCS specification:
 
 ```bash
-cc-linter validate
+cc-cli validate
 ```
 
 ### Generate Context Files
@@ -32,13 +32,13 @@ cc-linter validate
 Create a new `.context` directory with default structure:
 
 ```bash
-cc-linter generate --type context
+cc-cli generate --type context
 ```
 
 Generate a `.contextignore` file with default patterns:
 
 ```bash
-cc-linter generate --type ignore
+cc-cli generate --type ignore
 ```
 
 ### Lint Context Files
@@ -46,13 +46,13 @@ cc-linter generate --type ignore
 Check for best practices and potential improvements:
 
 ```bash
-cc-linter lint
+cc-cli lint
 ```
 
 Auto-fix linting issues when possible:
 
 ```bash
-cc-linter lint --fix
+cc-cli lint --fix
 ```
 
 ## Development

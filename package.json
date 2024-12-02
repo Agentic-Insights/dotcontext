@@ -1,6 +1,6 @@
 {
   "name": "cc-cli",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "description": "A CLI tool for managing and validating codebase context specifications",
   "main": "dist/index.js",
   "bin": {
@@ -37,15 +37,39 @@
     "ts-node": "^10.9.1",
     "typescript": "^5.1.6"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "release": {
     "branches": ["main"],
     "plugins": [
-      "@semantic-release/commit-analyzer",
+      ["@semantic-release/commit-analyzer", {
+        "preset": "angular",
+        "releaseRules": [
+          {"type": "feat", "release": "minor"},
+          {"type": "fix", "release": "patch"},
+          {"type": "docs", "release": "patch"},
+          {"type": "style", "release": "patch"},
+          {"type": "refactor", "release": "patch"},
+          {"type": "perf", "release": "patch"},
+          {"type": "test", "release": "patch"},
+          {"type": "build", "release": "patch"},
+          {"type": "ci", "release": "patch"},
+          {"type": "chore", "release": "patch"}
+        ]
+      }],
       "@semantic-release/release-notes-generator",
       "@semantic-release/changelog",
-      "@semantic-release/npm",
-      "@semantic-release/git",
-      "@semantic-release/github"
+      ["@semantic-release/npm", {
+        "pkgRoot": "."
+      }],
+      ["@semantic-release/github", {
+        "assets": ["dist/**"]
+      }],
+      ["@semantic-release/git", {
+        "assets": ["package.json", "package-lock.json", "CHANGELOG.md"],
+        "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+      }]
     ]
   }
 }

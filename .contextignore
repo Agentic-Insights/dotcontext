@@ -1,0 +1,49 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+.yarn/
+
+# Build outputs
+dist/
+build/
+lib/
+out/
+
+# Development files
+.vscode/
+.idea/
+*.log
+.env
+.env.*
+coverage/
+
+# Operating System
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+
+# Test files
+__tests__/
+test/
+tests/
+*.test.*
+*.spec.*
+
+# Documentation (except .context)
+docs/
+!.context/docs/
+
+# Version control
+.git/
+.gitignore
+.svn/
+.hg/
+
+# Package manager files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml

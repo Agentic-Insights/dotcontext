@@ -4,7 +4,7 @@
   "description": "A CLI tool for managing and validating codebase context specifications",
   "main": "dist/index.js",
   "bin": {
-    "cc-cli": "./dist/index.js"
+    "cc-cli": "dist/index.js"
   },
   "scripts": {
     "build": "tsc",

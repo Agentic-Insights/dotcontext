@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/Agentic-Insights/cc-cli/compare/v1.0.1...v1.0.2) (2024-12-07)
+
+
+### Bug Fixes
+
+* package name npm ([8c1cdcc](https://github.com/Agentic-Insights/cc-cli/commit/8c1cdcc7f8ff2911dfdca86d81b850053349d8ab))
+
 ## [1.0.1](https://github.com/Agentic-Insights/cc-cli/compare/v1.0.0...v1.0.1) (2024-12-07)
 
 

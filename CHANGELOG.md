@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/Agentic-Insights/cc-cli/compare/v1.0.0...v1.0.1) (2024-12-07)
+
+
+### Bug Fixes
+
+* remove extra file ([45ca9ac](https://github.com/Agentic-Insights/cc-cli/commit/45ca9ac243b31f76806996d10df2dcc14852f242))
+
 # 1.0.0 (2024-12-07)
 
 

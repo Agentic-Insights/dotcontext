@@ -1,6 +1,7 @@
 {
   "branches": ["main"],
   "tagFormat": "v${version}",
+  "repositoryUrl": "https://github.com/Agentic-Insights/cc-cli",
   "plugins": [
     ["@semantic-release/commit-analyzer", {
       "preset": "angular",

@@ -70,12 +70,6 @@ dist/
 build/
 out/
 
-# IDE and editor files
-.vscode/
-.idea/
-*.swp
-*.swo
-
 # Operating System files
 .DS_Store
 Thumbs.db
@@ -88,10 +82,6 @@ Thumbs.db
 .env
 .env.local
 .env.*.local
-
-# Test coverage
-coverage/
-.nyc_output/
 
 # Temporary files
 tmp/

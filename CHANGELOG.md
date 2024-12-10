@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/Agentic-Insights/cc-cli/compare/v1.1.0...v1.1.1) (2024-12-10)
+
+
+### Bug Fixes
+
+* better .contextignore template ([1df8a03](https://github.com/Agentic-Insights/cc-cli/commit/1df8a03a85bf541de4bf8a719c4063ee2b9fe6ee))
+
 # [1.1.0](https://github.com/Agentic-Insights/cc-cli/compare/v1.0.3...v1.1.0) (2024-12-10)
 
 

@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/Agentic-Insights/cc-cli/compare/v1.1.2...v1.2.0) (2024-12-10)
+
+
+### Features
+
+* publish dotcontext ([17bdbaa](https://github.com/Agentic-Insights/cc-cli/commit/17bdbaa5ef2f9c06b2977c021bc4aec122826d0a))
+
 ## [1.1.2](https://github.com/Agentic-Insights/cc-cli/compare/v1.1.1...v1.1.2) (2024-12-10)
 
 

@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/Agentic-Insights/cc-cli/compare/v1.1.1...v1.1.2) (2024-12-10)
+
+
+### Bug Fixes
+
+* correct docs ([762a202](https://github.com/Agentic-Insights/cc-cli/commit/762a202091a4933979b986ef3a1a7a37d220c012))
+
 ## [1.1.1](https://github.com/Agentic-Insights/cc-cli/compare/v1.1.0...v1.1.1) (2024-12-10)
 
 

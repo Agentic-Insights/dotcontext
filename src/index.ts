@@ -2,7 +2,7 @@
 
 import { Command } from 'commander';
 import { validate } from './commands/validate';
-import { generate } from './commands/generate';
+import { init } from './commands/init';
 import { lint } from './commands/lint';
 
 const program = new Command();
@@ -18,10 +18,9 @@ program
   .action(validate);
 
 program
-  .command('generate')
-  .description('Generate new context files or directories')
-  .option('-t, --type <type>', 'Type of content to generate (context|ignore)', 'context')
-  .action(generate);
+  .command('init')
+  .description('Initialize new context directory and ignore file')
+  .action(init);
 
 program
   .command('lint')

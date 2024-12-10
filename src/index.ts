@@ -8,7 +8,7 @@ import { lint } from './commands/lint';
 const program = new Command();
 
 program
-  .name('cc-cli')
+  .name('dotcontext')
   .description('CLI tool for managing and validating codebase context specifications')
   .version('0.1.0');
 

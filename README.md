@@ -1,4 +1,4 @@
-# cc-cli
+# dotcontext
 
 A convention developers can all easily adopt to capture and communicate the context of your codebase for both AI coding agents and humans. Similar to .env and .editorconfig, but focused on documenting your code.
 
@@ -22,7 +22,7 @@ This CLI tool helps you manage and validate codebase context specifications acco
 ## Installation
 
 ```bash
-npm install -g cc-cli
+npm install -g dotcontext
 ```
 
 ## Usage
@@ -32,7 +32,7 @@ npm install -g cc-cli
 Checks if your `.context` directory complies with the CCS specification:
 
 ```bash
-cc-cli validate
+dotcontext validate
 ```
 
 ### Initialize Context Directory
@@ -40,7 +40,7 @@ cc-cli validate
 Create a new `.context` directory with default structure and `.contextignore` file:
 
 ```bash
-cc-cli init
+dotcontext init
 ```
 
 ### Lint Context Files
@@ -48,13 +48,13 @@ cc-cli init
 Check for best practices and potential improvements:
 
 ```bash
-cc-cli lint
+dotcontext lint
 ```
 
 Auto-fix linting issues when possible:
 
 ```bash
-cc-cli lint --fix
+dotcontext lint --fix
 ```
 
 ## Development

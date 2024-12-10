@@ -3,13 +3,21 @@ import { ContextGenerator } from '../lib/ContextGenerator';
 export const init = async () => {
   try {
     const generator = new ContextGenerator();
+    const result = await generator.generate();
     
-    // Generate both context directory and ignore file by default
-    await generator.generateContextDir();
-    await generator.generateIgnoreFile();
-    
-    console.log('✅ Initialized .context directory with default structure');
-    console.log('✅ Generated .contextignore file with default patterns');
+    if (!result.dirCreated && !result.indexCreated && !result.ignoreCreated) {
+      console.log('✅ Context structure already exists');
+    } else {
+      if (result.dirCreated) {
+        console.log('✅ Created .context directory');
+      }
+      if (result.indexCreated) {
+        console.log('✅ Generated index.md with default content');
+      }
+      if (result.ignoreCreated) {
+        console.log('✅ Generated .contextignore with default patterns');
+      }
+    }
     
     process.exit(0);
   } catch (error) {

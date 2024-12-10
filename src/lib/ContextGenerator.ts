@@ -1,6 +1,12 @@
 import * as fs from 'fs/promises';
 import * as path from 'path';
 
+export interface GenerationResult {
+  dirCreated: boolean;
+  indexCreated: boolean;
+  ignoreCreated: boolean;
+}
+
 export class ContextGenerator {
   private readonly contextDir = '.context';
   private readonly defaultIndexContent = `\
@@ -87,14 +93,23 @@ Thumbs.db
 tmp/
 temp/`;
 
-  async generateContextDir(): Promise<void> {
+  private async fileExists(filePath: string): Promise<boolean> {
     try {
-      // Create .context directory if it doesn't exist
-      await fs.mkdir(this.contextDir, { recursive: true });
-      
-      // Create index.md with default content
-      const indexPath = path.join(this.contextDir, 'index.md');
-      await fs.writeFile(indexPath, this.defaultIndexContent);
+      await fs.access(filePath);
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
+  async generateContextDir(): Promise<boolean> {
+    try {
+      const dirExists = await this.fileExists(this.contextDir);
+      if (!dirExists) {
+        await fs.mkdir(this.contextDir, { recursive: true });
+        return true;
+      }
+      return false;
     } catch (error) {
       if (error instanceof Error) {
         throw new Error(`Failed to generate context directory: ${error.message}`);
@@ -103,15 +118,50 @@ temp/`;
     }
   }
 
-  async generateIgnoreFile(): Promise<void> {
+  async generateIndexFile(): Promise<boolean> {
     try {
-      // Create .contextignore with default patterns
-      await fs.writeFile('.contextignore', this.defaultIgnoreContent);
+      const indexPath = path.join(this.contextDir, 'index.md');
+      const indexExists = await this.fileExists(indexPath);
+      
+      if (!indexExists) {
+        await fs.writeFile(indexPath, this.defaultIndexContent);
+        return true;
+      }
+      return false;
+    } catch (error) {
+      if (error instanceof Error) {
+        throw new Error(`Failed to generate index file: ${error.message}`);
+      }
+      throw error;
+    }
+  }
+
+  async generateIgnoreFile(): Promise<boolean> {
+    try {
+      const ignoreExists = await this.fileExists('.contextignore');
+      
+      if (!ignoreExists) {
+        await fs.writeFile('.contextignore', this.defaultIgnoreContent);
+        return true;
+      }
+      return false;
     } catch (error) {
       if (error instanceof Error) {
         throw new Error(`Failed to generate ignore file: ${error.message}`);
       }
       throw error;
     }
+  }
+
+  async generate(): Promise<GenerationResult> {
+    const dirCreated = await this.generateContextDir();
+    const indexCreated = await this.generateIndexFile();
+    const ignoreCreated = await this.generateIgnoreFile();
+
+    return {
+      dirCreated,
+      indexCreated,
+      ignoreCreated
+    };
   }
 }

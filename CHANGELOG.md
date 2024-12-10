@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/Agentic-Insights/cc-cli/compare/v1.0.2...v1.0.3) (2024-12-07)
+
+
+### Bug Fixes
+
+* package name for real ([be5846a](https://github.com/Agentic-Insights/cc-cli/commit/be5846a786e8a182d5d71521c2b0aaf9a1022463))
+
 ## [1.0.2](https://github.com/Agentic-Insights/cc-cli/compare/v1.0.1...v1.0.2) (2024-12-07)
 
 

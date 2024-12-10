@@ -13,7 +13,7 @@ A CLI tool for managing and validating codebase context specifications according
 ## Features
 
 - ✅ Validate `.context` directories against CCS spec
-- 🔧 Generate new context files and directories
+- 🔧 Initialize new context directories and files
 - 🚨 Lint context files for compliance and best practices
 - 🛠️ Auto-fix common issues
 
@@ -33,18 +33,12 @@ Checks if your `.context` directory complies with the CCS specification:
 cc-cli validate
 ```
 
-### Generate Context Files
+### Initialize Context Directory
 
-Create a new `.context` directory with default structure:
-
-```bash
-cc-cli generate --type context
-```
-
-Generate a `.contextignore` file with default patterns:
+Create a new `.context` directory with default structure and `.contextignore` file:
 
 ```bash
-cc-cli generate --type ignore
+cc-cli init
 ```
 
 ### Lint Context Files

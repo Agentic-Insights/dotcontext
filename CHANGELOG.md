@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/Agentic-Insights/cc-cli/compare/v1.2.0...v1.2.1) (2024-12-10)
+
+
+### Bug Fixes
+
+* overwriting fixed ([78d1ee7](https://github.com/Agentic-Insights/cc-cli/commit/78d1ee7686d22289270e6eced4d425a2e0336000))
+
 # [1.2.0](https://github.com/Agentic-Insights/cc-cli/compare/v1.1.2...v1.2.0) (2024-12-10)
 
 

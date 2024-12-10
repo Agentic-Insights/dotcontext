@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/Agentic-Insights/cc-cli/compare/v1.0.3...v1.1.0) (2024-12-10)
+
+
+### Features
+
+* cc-cli init ([b73adcf](https://github.com/Agentic-Insights/cc-cli/commit/b73adcfb077be80436b467ae6248bf23f19558b9))
+
 ## [1.0.3](https://github.com/Agentic-Insights/cc-cli/compare/v1.0.2...v1.0.3) (2024-12-07)
 
 

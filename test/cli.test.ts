@@ -1,16 +1,13 @@
-import { exec } from 'child_process';
-import { promisify } from 'util';
-import path from 'path';
-import fs from 'fs/promises';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+import { exec } from 'node:child_process';
+import { promisify } from 'node:util';
+import path from 'node:path';
+import fs from 'node:fs/promises';
 
 const execAsync = promisify(exec);
 
 console.log('Running tests...');
 
-const cliPath = path.resolve(__dirname, '../src/index.js');
+const cliPath = path.resolve(__dirname, '../dist/index.js');
 const testDir = path.resolve(__dirname, 'test-context');
 
 describe('CLI', () => {

@@ -1,4 +1,4 @@
-import { ContextValidator } from '../lib/ContextValidator';
+import { ContextValidator } from '../lib/ContextValidator.js';
 
 export const validate = async () => {
   try {

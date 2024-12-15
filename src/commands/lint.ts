@@ -1,4 +1,11 @@
-import { ContextLinter } from '../lib/ContextLinter';
+import { ContextLinter } from '../lib/ContextLinter.js';
+
+interface LintIssue {
+  message: string;
+  file: string;
+  line: number;
+  suggestion?: string;
+}
 
 interface LintOptions {
   fix?: boolean;
@@ -14,7 +21,7 @@ export const lint = async (options: LintOptions) => {
       process.exit(0);
     } else {
       console.log('\nLinting issues found:');
-      results.issues.forEach(issue => {
+      results.issues.forEach((issue: LintIssue) => {
         console.log(`\n❌ ${issue.message}`);
         console.log(`   File: ${issue.file}`);
         console.log(`   Line: ${issue.line}`);

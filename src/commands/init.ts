@@ -1,4 +1,4 @@
-import { ContextGenerator } from '../lib/ContextGenerator';
+import { ContextGenerator } from '../lib/ContextGenerator.js';
 
 export const init = async () => {
   try {

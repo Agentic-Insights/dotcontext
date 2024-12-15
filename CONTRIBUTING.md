@@ -22,7 +22,6 @@ When developing locally, follow these steps:
     "dotcontext": {
       "command": "node",
       "args": ["C:/full/path/to/your/project/dist/mcp.js"],
-      "cwd": "C:/full/path/to/your/project",
       "env": {
         "NODE_ENV": "development"
       },

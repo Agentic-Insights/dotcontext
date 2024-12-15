@@ -9,7 +9,7 @@
     "dotcontext-mcp": "dist/mcp.js"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "tsc -p tsconfig.build.json",
     "test": "cd . & npm run build & jest --passWithNoTests",
     "test:coverage": "jest --coverage",
     "start": "ts-node src/index.ts",

@@ -3,6 +3,7 @@ import { Command } from 'commander';
 import { ContextManager } from './core.js';
 import path from 'path';
 import { ContextGenerator } from './lib/ContextGenerator.js';
+import pkg from '../package.json' assert { type: 'json' };
 
 const program = new Command();
 const contextManager = new ContextManager();
@@ -10,7 +11,7 @@ const contextManager = new ContextManager();
 program
   .name('dotcontext')
   .description('CLI tool for working with the Codebase Context Specification')
-  .version('1.0.0');
+  .version(pkg.version);
 
 program
   .command('validate')

@@ -11,7 +11,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "test": "npm run build & jest --passWithNoTests",
+    "test": "cd . & npm run build & jest --passWithNoTests",
     "test:coverage": "jest --coverage",
     "start": "ts-node src/index.ts",
     "dev": "ts-node-dev --respawn src/index.ts",

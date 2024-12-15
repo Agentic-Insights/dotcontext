@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/Agentic-Insights/dotcontext/compare/v1.3.0...v1.3.1) (2024-12-15)
+
+
+### Bug Fixes
+
+* npx command setup ([9f662f9](https://github.com/Agentic-Insights/dotcontext/commit/9f662f984721efa7dc2af4f14025e3030053681e))
+
 # [1.3.0](https://github.com/Agentic-Insights/dotcontext/compare/v1.2.1...v1.3.0) (2024-12-15)
 
 

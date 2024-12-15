@@ -9,6 +9,7 @@ import {
   CallToolRequest,
 } from '@modelcontextprotocol/sdk/types.js';
 import path from 'path';
+import { stat } from 'node:fs/promises';
 
 // Import from local files
 import { ContextManager } from './core.js';
@@ -35,24 +36,24 @@ interface DiagramsArgs {
 const isInitArgs = (args: unknown): args is InitArgs =>
   typeof args === 'object' &&
   args !== null &&
-  typeof (args as InitArgs).path === 'string';
+  (typeof (args as InitArgs).path === 'string' || typeof (args as InitArgs).path === 'undefined');
 
 const isValidateArgs = (args: unknown): args is ValidateArgs =>
   typeof args === 'object' &&
   args !== null &&
-  typeof (args as ValidateArgs).path === 'string';
+  (typeof (args as ValidateArgs).path === 'string' || typeof (args as ValidateArgs).path === 'undefined');
 
 const isContextArgs = (args: unknown): args is ContextArgs =>
   typeof args === 'object' &&
   args !== null &&
-  typeof (args as ContextArgs).path === 'string' &&
+  (typeof (args as ContextArgs).path === 'string' || typeof (args as ContextArgs).path === 'undefined') &&
   (typeof (args as ContextArgs).raw === 'undefined' ||
     typeof (args as ContextArgs).raw === 'boolean');
 
 const isDiagramsArgs = (args: unknown): args is DiagramsArgs =>
   typeof args === 'object' &&
   args !== null &&
-  typeof (args as DiagramsArgs).path === 'string' &&
+  (typeof (args as DiagramsArgs).path === 'string' || typeof (args as DiagramsArgs).path === 'undefined') &&
   (typeof (args as DiagramsArgs).content === 'undefined' ||
     typeof (args as DiagramsArgs).content === 'boolean');
 
@@ -74,8 +75,8 @@ class DotContextServer {
       }
     );
 
-    // Initialize dotcontext classes
-    this.contextManager = new ContextManager();
+    // Initialize dotcontext classes with base directory
+    this.contextManager = new ContextManager('C:/Users/vaski/Desktop/Side-Projects/cc-cli');
     this.ContextGenerator = ContextGenerator;
     
     this.setupToolHandlers();
@@ -99,7 +100,8 @@ class DotContextServer {
             properties: {
               path: {
                 type: 'string',
-                description: 'Directory path where to initialize .context',
+                description: 'Directory path where to initialize .context (defaults to .context in current directory)',
+                default: '.context'
               },
             },
             required: ['path'],
@@ -113,7 +115,8 @@ class DotContextServer {
             properties: {
               path: {
                 type: 'string',
-                description: 'Path to the .context directory',
+                description: 'Path to the .context directory (defaults to .context in current directory)',
+                default: '.context'
               },
             },
             required: ['path'],
@@ -127,7 +130,8 @@ class DotContextServer {
             properties: {
               path: {
                 type: 'string',
-                description: 'Path to the .context directory',
+                description: 'Path to the .context directory (defaults to .context in current directory)',
+                default: '.context'
               },
               raw: {
                 type: 'boolean',
@@ -146,7 +150,8 @@ class DotContextServer {
             properties: {
               path: {
                 type: 'string',
-                description: 'Path to the .context directory',
+                description: 'Path to the .context directory (defaults to .context in current directory)',
+                default: '.context'
               },
               content: {
                 type: 'boolean',
@@ -169,7 +174,8 @@ class DotContextServer {
             if (!isInitArgs(args)) {
               throw new McpError(ErrorCode.InvalidParams, 'Invalid init arguments');
             }
-            const generator = new this.ContextGenerator();
+            const contextPath = args.path || '.context';
+            const generator = new this.ContextGenerator(contextPath);
             const result = await generator.generate();
             
             return {
@@ -191,8 +197,8 @@ class DotContextServer {
             if (!isValidateArgs(args)) {
               throw new McpError(ErrorCode.InvalidParams, 'Invalid validate arguments');
             }
-            const absolutePath = path.resolve(process.cwd(), args.path);
-            const result = await this.contextManager.validateContextStructure(absolutePath);
+            const contextPath = args.path || '.context';
+            const result = await this.contextManager.validateContextStructure(contextPath);
             
             return {
               content: [
@@ -211,8 +217,8 @@ class DotContextServer {
             if (!isContextArgs(args)) {
               throw new McpError(ErrorCode.InvalidParams, 'Invalid context arguments');
             }
-            const absolutePath = path.resolve(process.cwd(), args.path);
-            const context = await this.contextManager.getModuleContext(absolutePath);
+            const contextPath = args.path || '.context';
+            const context = await this.contextManager.getModuleContext(contextPath);
             
             if (args.raw) {
               return {
@@ -273,8 +279,8 @@ class DotContextServer {
                 'Invalid diagrams arguments: path must be a string and content (if provided) must be a boolean'
               );
             }
-            const absolutePath = path.resolve(process.cwd(), args.path);
-            const diagrams = await this.contextManager.getDiagrams(absolutePath);
+            const contextPath = args.path || '.context';
+            const diagrams = await this.contextManager.getDiagrams(contextPath);
             
             let formattedText = '';
             if (diagrams.length === 0) {
@@ -284,7 +290,7 @@ class DotContextServer {
               for (const diagram of diagrams) {
                 formattedText += `  - ${diagram}\n`;
                 if (args.content) {
-                  const context = await this.contextManager.getModuleContext(absolutePath);
+                  const context = await this.contextManager.getModuleContext(contextPath);
                   if (context.diagrams[diagram]) {
                     formattedText += '\nContent:\n';
                     formattedText += context.diagrams[diagram];

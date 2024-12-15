@@ -1,6 +1,6 @@
 {
   "name": "dotcontext",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "type": "module",
   "description": "A CLI tool for managing and validating codebase context specifications",
   "main": "dist/index.js",

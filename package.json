@@ -1,10 +1,13 @@
 {
   "name": "dotcontext",
   "version": "1.2.1",
+  "type": "module",
   "description": "A CLI tool for managing and validating codebase context specifications",
   "main": "dist/index.js",
   "bin": {
-    "dotcontext": "dist/index.js"
+    "dotcontext": "dist/index.js",
+    "dotcontext-mcp": "dist/mcp.js",
+    "mcp": "dist/mcp.js"
   },
   "scripts": {
     "build": "tsc",
@@ -13,7 +16,9 @@
     "start": "ts-node src/index.ts",
     "dev": "ts-node-dev --respawn src/index.ts",
     "lint": "eslint . --ext .ts",
-    "prepare": "npm run build"
+    "prepare": "npm run build",
+    "mcp": "node dist/mcp.js",
+    "inspector": "npx @modelcontextprotocol/inspector dist/mcp.js"
   },
   "keywords": [
     "cli",
@@ -24,13 +29,15 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@modelcontextprotocol/sdk": "0.6.0",
     "commander": "^11.0.0"
   },
   "devDependencies": {
-    "@types/jest": "^29.5.3",
-    "@types/node": "^20.4.5",
+    "@modelcontextprotocol/inspector": "^0.3.0",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
+    "@types/jest": "^29.5.3",
+    "@types/node": "^20.4.5",
     "jest": "^29.6.2",
     "semantic-release": "^22.0.12",
     "ts-jest": "^29.1.1",

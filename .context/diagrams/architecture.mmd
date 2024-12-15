@@ -1,0 +1,27 @@
+graph TB
+    MCP[MCP Server] --> |Exposes Tools| Tools
+    subgraph Tools
+        Init[Init Tool]
+        Validate[Validate Tool]
+        Context[Context Tool]
+        Diagrams[Diagrams Tool]
+    end
+    
+    subgraph Core Components
+        CV[Context Validator]
+        CG[Context Generator]
+        CL[Context Linter]
+        CM[Context Manager]
+    end
+    
+    Init --> CG
+    Validate --> CV
+    Context --> CM
+    Diagrams --> CM
+    
+    CM --> CV
+    CM --> CL
+    
+    style MCP fill:#f9f,stroke:#333,stroke-width:2px
+    style Core Components fill:#bbf,stroke:#333,stroke-width:1px
+    style Tools fill:#bfb,stroke:#333,stroke-width:1px

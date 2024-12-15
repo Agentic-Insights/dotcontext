@@ -1,5 +1,5 @@
-import * as fs from 'fs/promises';
-import * as path from 'path';
+import * as fs from 'node:fs/promises';
+import * as path from 'node:path';
 
 export interface GenerationResult {
   dirCreated: boolean;
@@ -8,7 +8,11 @@ export interface GenerationResult {
 }
 
 export class ContextGenerator {
-  private readonly contextDir = '.context';
+  private readonly contextDir: string;
+  
+  constructor(contextDir: string = '.context') {
+    this.contextDir = contextDir;
+  }
   private readonly defaultIndexContent = `\
 module-name: Project Name
 version: 0.1.0

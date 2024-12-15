@@ -1,3 +1,10 @@
+## [1.3.2](https://github.com/Agentic-Insights/dotcontext/compare/v1.3.1...v1.3.2) (2024-12-15)
+
+
+### Bug Fixes
+
+* update and cleanup ([5aebe72](https://github.com/Agentic-Insights/dotcontext/commit/5aebe7267f62074396c4e35cea8ce5e170c0e1ec))
+
 ## [1.3.1](https://github.com/Agentic-Insights/dotcontext/compare/v1.3.0...v1.3.1) (2024-12-15)
 
 

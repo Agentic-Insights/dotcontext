@@ -191,7 +191,7 @@ class DotContextServer {
             if (!isValidateArgs(args)) {
               throw new McpError(ErrorCode.InvalidParams, 'Invalid validate arguments');
             }
-            const absolutePath = path.resolve(args.path);
+            const absolutePath = path.resolve(process.cwd(), args.path);
             const result = await this.contextManager.validateContextStructure(absolutePath);
             
             return {
@@ -211,7 +211,7 @@ class DotContextServer {
             if (!isContextArgs(args)) {
               throw new McpError(ErrorCode.InvalidParams, 'Invalid context arguments');
             }
-            const absolutePath = path.resolve(args.path);
+            const absolutePath = path.resolve(process.cwd(), args.path);
             const context = await this.contextManager.getModuleContext(absolutePath);
             
             if (args.raw) {
@@ -268,9 +268,12 @@ class DotContextServer {
 
           case 'diagrams': {
             if (!isDiagramsArgs(args)) {
-              throw new McpError(ErrorCode.InvalidParams, 'Invalid diagrams arguments');
+              throw new McpError(
+                ErrorCode.InvalidParams,
+                'Invalid diagrams arguments: path must be a string and content (if provided) must be a boolean'
+              );
             }
-            const absolutePath = path.resolve(args.path);
+            const absolutePath = path.resolve(process.cwd(), args.path);
             const diagrams = await this.contextManager.getDiagrams(absolutePath);
             
             let formattedText = '';

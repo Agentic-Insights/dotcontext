@@ -63,6 +63,8 @@ The tool is built as a Node.js CLI application using TypeScript and Commander.js
 - **Context Generator**: Creates new context files and directories
 - **Context Linter**: Checks for best practices and potential improvements
 
+See the [architecture diagram](diagrams/architecture.mmd) for a visual representation of how the MCP server exposes tools that interact with the core components. The Context Manager acts as a central coordinator, leveraging the Validator and Linter as needed.
+
 ## Development Roadmap
 
 1. Initial CLI setup with basic commands

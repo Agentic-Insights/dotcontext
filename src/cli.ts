@@ -2,7 +2,7 @@
 import { Command } from 'commander';
 import { ContextManager } from './core.js';
 import path from 'path';
-import { ContextGenerator } from './lib/ContextGenerator';
+import { ContextGenerator } from './lib/ContextGenerator.js';
 
 const program = new Command();
 const contextManager = new ContextManager();
@@ -15,8 +15,8 @@ program
 program
   .command('validate')
   .description('Validate a .context directory structure and contents')
-  .argument('<path>', 'Path to the .context directory')
-  .action(async (dirPath: string) => {
+  .argument('[path]', 'Path to the .context directory (defaults to .context in current directory)')
+  .action(async (dirPath: string = '.context') => {
     try {
       const absolutePath = path.resolve(process.cwd(), dirPath);
       const result = await contextManager.validateContextStructure(absolutePath);
@@ -37,9 +37,9 @@ program
 program
   .command('context')
   .description('Get context information from index.md including related modules')
-  .argument('<path>', 'Path to the .context directory')
+  .argument('[path]', 'Path to the .context directory (defaults to .context in current directory)')
   .option('-r, --raw', 'Output raw JSON instead of formatted text')
-  .action(async (dirPath: string, options) => {
+  .action(async (dirPath: string = '.context', options) => {
     try {
       const absolutePath = path.resolve(process.cwd(), dirPath);
       const context = await contextManager.getModuleContext(absolutePath);
@@ -89,9 +89,9 @@ program
 program
   .command('diagrams')
   .description('List available Mermaid diagrams')
-  .argument('<path>', 'Path to the .context directory')
+  .argument('[path]', 'Path to the .context directory (defaults to .context in current directory)')
   .option('-c, --content', 'Include diagram content')
-  .action(async (dirPath: string, options) => {
+  .action(async (dirPath: string = '.context', options) => {
     try {
       const absolutePath = path.resolve(process.cwd(), dirPath);
       const diagrams = await contextManager.getDiagrams(absolutePath);

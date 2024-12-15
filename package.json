@@ -6,8 +6,7 @@
   "main": "dist/index.js",
   "bin": {
     "dotcontext": "dist/index.js",
-    "dotcontext-mcp": "dist/mcp.js",
-    "mcp": "dist/mcp.js"
+    "dotcontext-mcp": "dist/mcp.js"
   },
   "scripts": {
     "build": "tsc",

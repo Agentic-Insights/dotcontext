@@ -22,6 +22,7 @@ export class ContextManager {
       : join(this.baseDir, dirPath);
     return normalizePath(resolvedPath);
   }
+
   async validateContextStructure(dirPath: string): Promise<{ valid: boolean; errors: string[] }> {
     return { valid: true, errors: [] };
   }
@@ -55,32 +56,18 @@ export class ContextManager {
     try {
       const fullPath = this.resolvePath(dirPath);
       const diagramsPath = join(fullPath, 'diagrams');
-      console.error('Core Debug:', {
-        inputPath: dirPath,
-        fullPath,
-        diagramsPath,
-        baseDir: this.baseDir,
-        exists: await access(diagramsPath).then(() => true).catch(() => false)
-      });
       
       // Check if diagrams directory exists
       try {
         await readdir(diagramsPath);
-      } catch (error) {
-        console.error('Diagrams directory not accessible:', error);
-        console.error('Full error details:', {
-          error,
-          diagramsPath,
-          exists: await access(diagramsPath).then(() => true).catch(() => false)
-        });
+      } catch {
         return [];
       }
       
       // List all files
       const allFiles = await readdir(diagramsPath);
-      console.error('All files in directory:', allFiles);
       
-      // Check each file
+      // Filter for .mmd files
       const mmdFiles = [];
       for (const file of allFiles) {
         const fullPath = join(diagramsPath, file);
@@ -89,17 +76,14 @@ export class ContextManager {
           if (file.endsWith('.mmd')) {
             mmdFiles.push(file);
           }
-        } catch (error) {
-          console.error(`Error reading file ${file}:`, error);
+        } catch {
+          // Skip files that can't be read
+          continue;
         }
       }
       
-      console.error('Found .mmd files:', mmdFiles);
       return mmdFiles;
-    } catch (error) {
-      console.error('Error in getDiagrams:', error);
-      console.error('Input dirPath:', dirPath);
-      console.error('Resolved diagrams path:', join(dirPath, 'diagrams'));
+    } catch {
       return [];
     }
   }

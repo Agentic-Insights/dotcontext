@@ -66,7 +66,7 @@ class DotContextServer {
     this.server = new Server(
       {
         name: 'dotcontext',
-        version: '1.2.1',
+        version: '1.3.1', // Match package.json version
       },
       {
         capabilities: {
@@ -75,14 +75,19 @@ class DotContextServer {
       }
     );
 
-    // Initialize dotcontext classes with base directory
-    this.contextManager = new ContextManager('C:/Users/vaski/Desktop/Side-Projects/cc-cli');
+    // Use process.cwd() by default
+    this.contextManager = new ContextManager();
     this.ContextGenerator = ContextGenerator;
     
     this.setupToolHandlers();
     
     // Error handling
-    this.server.onerror = (error: Error) => console.error('[MCP Error]', error);
+    this.server.onerror = (error: Error) => {
+      // Only log actual errors, not debug info
+      if (error instanceof McpError) {
+        console.error('[MCP Error]', error.message);
+      }
+    };
     process.on('SIGINT', async () => {
       await this.server.close();
       process.exit(0);
@@ -333,7 +338,6 @@ class DotContextServer {
   async run() {
     const transport = new StdioServerTransport();
     await this.server.connect(transport);
-    console.error('DotContext MCP server running on stdio');
   }
 }
 

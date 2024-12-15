@@ -1,3 +1,5 @@
 graph TD
-    A[Start] --> B[Process]
-    B --> C[End]
+    A[Start] --> B{Is it working?}
+    B -->|Yes| C[Great!]
+    B -->|No| D[Debug]
+    D --> A

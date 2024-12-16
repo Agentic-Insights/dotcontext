@@ -6,21 +6,16 @@ This package provides an MCP (Model Context Protocol) server and CLI tool for ma
 
 ![Codebase Context](https://raw.githubusercontent.com/Agentic-Insights/codebase-context-spec/main/img/codebase-context.png)
 
-## Usage with Claude Desktop
+## Usage with an MCP client
 
-Add this to your `claude_desktop_config.json`:
+Add this to your MCP client's configuration:
 
 ```json
 {
   "mcpServers": {
     "dotcontext": {
       "command": "npx",
-      "args": [
-        "dotcontext/mcp"
-      ],
-      "env": {
-        "NODE_ENV": "development"
-      },
+      "args": ["-y", "dotcontext-mcp"],
       "disabled": false,
       "alwaysAllow": []
     }

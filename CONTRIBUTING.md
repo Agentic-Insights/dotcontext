@@ -46,7 +46,7 @@ For production use (after the package is published to npm), use this configurati
   "mcpServers": {
     "dotcontext": {
       "command": "npx",
-      "args": ["-y", "dotcontext", "mcp"],
+      "args": ["-y", "dotcontext", "dotcontext-mcp"],
       "disabled": false,
       "alwaysAllow": []
     }

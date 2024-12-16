@@ -1,3 +1,10 @@
+## [1.3.4](https://github.com/Agentic-Insights/dotcontext/compare/v1.3.3...v1.3.4) (2024-12-16)
+
+
+### Bug Fixes
+
+* refactor and update readme ([d91958e](https://github.com/Agentic-Insights/dotcontext/commit/d91958edeabc7646dd071a3d31cf4942a656504f))
+
 ## [1.3.3](https://github.com/Agentic-Insights/dotcontext/compare/v1.3.2...v1.3.3) (2024-12-15)
 
 

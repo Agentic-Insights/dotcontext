@@ -13,62 +13,121 @@ export class ContextGenerator {
   constructor(contextDir: string = '.context') {
     this.contextDir = contextDir;
   }
+
   private readonly defaultIndexContent = `\
+---
+# Basic project information
 module-name: Project Name
 version: 0.1.0
-description: Project description
+description: A brief description of your project
+
+# Technical stack
 technologies:
-  - List your technologies here
+  - Node.js
+  - TypeScript
+  - PostgreSQL
+
+# Development conventions
 conventions:
-  - List your conventions here
+  - ESLint + Prettier
+  - Conventional Commits
+  - Git Flow
+
+# Architecture details
 architecture:
-  style: Your architecture style
+  style: Microservices
   components:
-    - Component 1
-    - Component 2
+    - name: API Gateway
+      description: Routes external requests to appropriate services
+    - name: Auth Service
+      description: Handles authentication and authorization
+    - name: Core Service
+      description: Manages core business logic
+  patterns:
+    - name: Repository Pattern
+      usage: Data access abstraction in services
+    - name: Circuit Breaker
+      usage: Fault tolerance between services
+
+# Development information
 development:
-  setup-steps:
-    - Step 1
-    - Step 2
+  setup:
+    - npm install
+    - cp .env.example .env
+    - npm run build
+  testing:
+    framework: Jest
+    coverage: "80%"
+  deployment:
+    platform: AWS
+    pipeline: GitHub Actions
+
+# Business context
 business-requirements:
-  - Requirement 1
-  - Requirement 2
-quality-assurance:
-  - Testing framework: Your choice
-  - Code coverage target: Your target
-deployment:
-  - Platform: Your platform
-  - CICD: Your CI/CD solution
+  - Secure user authentication
+  - High availability (99.9% uptime)
+  - Real-time data synchronization
+
+# AI tool configuration
 permissions:
   allow-ai-modifications: true
 ---
 
-# Project Name
+# Project Documentation
 
-Detailed project description and documentation goes here.
+## Overview
 
-## Key Features
+This section provides detailed documentation about the project's purpose,
+functionality, and implementation details.
 
-- Feature 1
-- Feature 2
+## Architecture Details
 
-## Project Goals
+### Component Interactions
 
-1. Goal 1
-2. Goal 2
+Describe how your components interact with each other. Consider adding
+diagrams in the diagrams/ directory using Mermaid syntax.
 
-## Architecture
+### Design Decisions
 
-Describe your architecture here.
+Document important architectural decisions and their rationales:
+- Why certain patterns were chosen
+- Performance considerations
+- Scalability approach
 
-## Development Roadmap
+## Development Guide
 
-1. Phase 1
-2. Phase 2
+### Getting Started
+
+1. Clone the repository
+2. Install dependencies (npm install)
+3. Configure environment variables
+4. Start development server
+
+### Testing Strategy
+
+- Unit tests for business logic
+- Integration tests for API endpoints
+- E2E tests for critical flows
+
+### Deployment Process
+
+- Automated CI/CD pipeline
+- Staging environment validation
+- Production deployment steps
 
 ## Contributing
 
-Contribution guidelines go here.`;
+### Guidelines
+
+- Code style and formatting rules
+- Pull request process
+- Review requirements
+
+### Common Tasks
+
+- Adding new features
+- Bug reporting process
+- Documentation updates`;
 
   private readonly defaultIgnoreContent = `\
 # Dependencies
@@ -79,6 +138,12 @@ vendor/
 dist/
 build/
 out/
+
+# IDE and editor files
+.idea/
+.vscode/
+*.swp
+*.swo
 
 # Operating System files
 .DS_Store
@@ -95,7 +160,10 @@ Thumbs.db
 
 # Temporary files
 tmp/
-temp/`;
+temp/
+
+# Test coverage
+coverage/`;
 
   private async fileExists(filePath: string): Promise<boolean> {
     try {
@@ -111,6 +179,7 @@ temp/`;
       const dirExists = await this.fileExists(this.contextDir);
       if (!dirExists) {
         await fs.mkdir(this.contextDir, { recursive: true });
+        await fs.mkdir(path.join(this.contextDir, 'diagrams'), { recursive: true });
         return true;
       }
       return false;

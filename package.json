@@ -29,7 +29,8 @@
   "license": "MIT",
   "dependencies": {
     "@modelcontextprotocol/sdk": "0.6.0",
-    "commander": "^11.0.0"
+    "commander": "^11.0.0",
+    "gray-matter": "^4.0.3"
   },
   "devDependencies": {
     "@modelcontextprotocol/inspector": "^0.3.0",

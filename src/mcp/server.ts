@@ -11,12 +11,26 @@ import { handleInit } from './handlers/init.js';
 import { handleValidate } from './handlers/validate.js';
 import { handleContext } from './handlers/context.js';
 import { handleDiagrams } from './handlers/diagrams.js';
+import { dirname, resolve } from 'path';
+import { fileURLToPath } from 'url';
 
 export class DotContextServer {
   private server: Server;
   private contextManager: ContextManager;
 
   constructor() {
+    // Get the directory of the executed script
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = dirname(__filename);
+    // Go up two directories from dist/mcp/server.js to get to the project root
+    const projectRoot = resolve(__dirname, '..', '..');
+
+    // Log paths for debugging
+    console.error('Server CWD:', process.cwd());
+    console.error('Server __dirname:', __dirname);
+    console.error('Server projectRoot:', projectRoot);
+    console.error('Server process.argv:', process.argv);
+
     this.server = new Server(
       {
         name: 'dotcontext',
@@ -29,7 +43,8 @@ export class DotContextServer {
       }
     );
 
-    this.contextManager = new ContextManager();
+    // Use project root as base directory
+    this.contextManager = new ContextManager(projectRoot);
     
     this.setupToolHandlers();
     
@@ -132,7 +147,7 @@ export class DotContextServer {
           case 'validate':
             return handleValidate(request);
           case 'context':
-            return handleContext(request);
+            return handleContext(request, this.contextManager);
           case 'diagrams':
             return handleDiagrams(request);
           default:
@@ -158,5 +173,6 @@ export class DotContextServer {
   async run() {
     const transport = new StdioServerTransport();
     await this.server.connect(transport);
+    console.error('Server running on stdio');
   }
 }

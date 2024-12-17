@@ -1,11 +1,5 @@
 ---
 contextdocs:
-  - name: Model Context Protocol (MCP)
-    relationship: Core protocol implemented by this project
-    resources:
-      - Official Documentation: https://modelcontextprotocol.io/docs/concepts/architecture
-      - TypeScript SDK: https://github.com/modelcontextprotocol/typescript-sdk
-
   - name: TypeScript
     relationship: Main language for linter implementation
     resources:
@@ -27,4 +21,9 @@ contextdocs:
       - Testing TypeScript with Jest: https://basarat.gitbook.io/typescript/intro-1/jest
       - Jest with TypeScript in Node.js: https://stackoverflow.com/questions/54822273/how-to-use-jest-with-typescript-in-node-js
 
+  - name: Model Context Protocol (MCP)
+    relationship: Core protocol implemented by this project
+    resources:
+      - Official Documentation: https://modelcontextprotocol.io/docs/concepts/architecture
+      - TypeScript SDK: https://github.com/modelcontextprotocol/typescript-sdk
 ---

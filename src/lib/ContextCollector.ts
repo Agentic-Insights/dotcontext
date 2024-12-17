@@ -124,13 +124,6 @@ export class ContextCollector {
         errors.push('Missing index.md file');
       }
 
-      // Check for diagrams directory
-      const diagramsPath = join(fullPath, 'diagrams');
-      try {
-        await access(diagramsPath);
-      } catch {
-        errors.push('Missing diagrams directory');
-      }
 
     } catch (error) {
       errors.push(`Invalid context directory: ${error instanceof Error ? error.message : String(error)}`);

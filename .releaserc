@@ -1,7 +1,7 @@
 {
   "branches": ["main"],
   "tagFormat": "v${version}",
-  "repositoryUrl": "https://github.com/Agentic-Insights/cc-cli",
+  "repositoryUrl": "https://github.com/Agentic-Insights/dotcontext",
   "plugins": [
     ["@semantic-release/commit-analyzer", {
       "preset": "angular",
@@ -24,7 +24,10 @@
       "pkgRoot": "."
     }],
     ["@semantic-release/github", {
-      "assets": ["dist/**"]
+      "assets": [
+        {"path": "dist/*.js", "label": "Distribution JavaScript files"},
+        {"path": "dist/*.d.ts", "label": "TypeScript declaration files"}
+      ]
     }],
     ["@semantic-release/git", {
       "assets": ["package.json", "package-lock.json", "CHANGELOG.md"],

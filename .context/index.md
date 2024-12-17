@@ -1,8 +1,9 @@
 ---
 module-name: Codebase Context CLI
 version: 0.1.0
-description: A CLI tool for managing and validating codebase context specifications, helping developers implement the CCS standard effectively.
+description: MCP Server and a CLI tool for managing and validating dotcontext (.context) directories.
 technologies:
+  - MCP Server
   - Node.js
   - TypeScript
   - Commander.js
@@ -12,10 +13,11 @@ conventions:
   - Implement semantic versioning
   - Write unit tests for all features
 architecture:
-  style: CLI Application
+  style: IDE Utilities via npx/npm
   components:
+    - Content Collector - helps build a prompt from unstructured data in main module and submodules (core prompt generation functionality)
+    - Context Generator - supports the init commands and generates a starter template (analagous to git init)
     - Context Validator
-    - Context Generator
     - Context Linter
 development:
   setup-steps:
@@ -37,9 +39,9 @@ permissions:
   allow-ai-modifications: true
 ---
 
-# Codebase Context CLI
+# Codebase Context MCP & CLI
 
-A command-line interface tool for managing and validating codebase context specifications. This tool helps developers implement the Codebase Context Specification (CCS) effectively by providing utilities for creation, validation, and maintenance of `.context` directories.
+A command-line interface tool for managing and validating codebase context specifications. This tool helps developers implement the Codebase Context Specification (CCS) effectively by providing utilities for creation, validation, and maintenance of `.context` directories. It also provides your tools with an MCP server that lets them pull in the .context into your context window. T
 
 ## Key Features
 
@@ -50,29 +52,13 @@ A command-line interface tool for managing and validating codebase context speci
 
 ## Project Goals
 
-1. Replace and enhance the functionality of the existing `codebase-context-lint` package
-2. Provide a more user-friendly CLI interface for managing context files
-3. Help standardize the implementation of the CCS across projects
-4. Facilitate better documentation practices in development teams
+1. Help save / use summaries and descriptions for your coding agent relevant to your repositories
+2. Help standardize the implementation of the CCS across projects letting AI understand across repositories
+3. Facilitate better documentation practices in development teams
 
 ## Architecture
 
-The tool is built as a Node.js CLI application using TypeScript and Commander.js. It follows a modular architecture with distinct components for different functionalities:
-
-- **Context Validator**: Ensures `.context` directories comply with the CCS
-- **Context Generator**: Creates new context files and directories
-- **Context Linter**: Checks for best practices and potential improvements
+Supports basic functions through CLI and MCP interfaces.
 
 See the [architecture diagram](diagrams/architecture.mmd) for a visual representation of how the MCP server exposes tools that interact with the core components. The Context Manager acts as a central coordinator, leveraging the Validator and Linter as needed.
 
-## Development Roadmap
-
-1. Initial CLI setup with basic commands
-2. Implementation of context validation
-3. Context generation utilities
-4. Advanced linting features
-5. Integration with popular IDEs and tools
-
-## Contributing
-
-Contributions are welcome! Please ensure you follow our contribution guidelines and maintain test coverage for new features.

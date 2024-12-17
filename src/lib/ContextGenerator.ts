@@ -68,6 +68,17 @@ business-requirements:
   - High availability (99.9% uptime)
   - Real-time data synchronization
 
+# Quality assurance
+quality-assurance:
+  testing-strategy:
+    - Unit tests with Jest
+    - Integration tests for APIs
+    - End-to-end testing
+  code-quality:
+    - Code reviews required
+    - Static analysis tools
+    - Performance monitoring
+
 # AI tool configuration
 permissions:
   allow-ai-modifications: true

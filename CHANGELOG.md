@@ -1,3 +1,5 @@
+## [1.3.5](https://github.com/Agentic-Insights/dotcontext/compare/v1.3.4...v1.3.5) (2024-12-17)
+
 ## [1.3.4](https://github.com/Agentic-Insights/dotcontext/compare/v1.3.3...v1.3.4) (2024-12-16)
 
 

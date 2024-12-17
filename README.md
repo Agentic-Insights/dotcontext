@@ -1,8 +1,24 @@
 # dotcontext
 
-A convention developers can all easily adopt to capture and communicate the context of your codebase for both AI coding agents and humans. Similar to .env and .editorconfig, but focused on documenting your code.
+A convention developers can all easily adopt to capture and communicate the context of your codebase for both AI coding agents and humans. Similar to .env and .editorconfig, but focused on documenting your code. Visit [codebasecontext.org](https://codebasecontext.org/) to learn more about the specification.
 
-This package provides an MCP (Model Context Protocol) server and CLI tool for managing codebase context specifications according to the [Codebase Context Specification (CCS)](https://github.com/Agentic-Insights/codebase-context-spec).
+## Overview
+
+This package provides two main components under a single npm package:
+
+1. **CLI Tool (`dotcontext`)**: A command-line interface for managing your codebase context. Use this to initialize, validate, and maintain your `.context` directory structure:
+
+   ```bash
+   .context/
+   ├── index.md     (required)
+   ├── docs.md      (optional)
+   ├── diagrams/    (optional)
+   .contextignore (optional)
+   ```
+
+2. **MCP Server (`dotcontext-mcp`)**: A Model Context Protocol server that enables AI coding agents to interact with your codebase context. This allows tools like [Cline](https://codebasecontext.org/tools/code-generation/cline) to automatically read and understand your project's architecture and context.
+
+Both components work together to help you maintain and leverage the [Codebase Context Specification (CCS)](https://github.com/Agentic-Insights/codebase-context-spec) in your projects.
 
 ![Codebase Context](https://raw.githubusercontent.com/Agentic-Insights/codebase-context-spec/main/img/codebase-context.png)
 
@@ -15,7 +31,22 @@ Add this to your MCP client's configuration:
   "mcpServers": {
     "dotcontext": {
       "command": "npx",
-      "args": ["-y", "dotcontext-mcp"],
+      "args": ["-y", "-p", "dotcontext", "dotcontext-mcp"],
+      "disabled": false,
+      "alwaysAllow": []
+    }
+  }
+}
+```
+
+If you encounter 'spawn NOENT' errors on Windows when using Cline, modify the configuration to use the full path to npx:
+
+```json
+{
+  "mcpServers": {
+    "dotcontext": {
+      "command": "node",
+      "args": ["C:/Program Files/nodejs/node_modules/npm/bin/npx-cli.js", "-y", "-p", "dotcontext", "dotcontext-mcp"],
       "disabled": false,
       "alwaysAllow": []
     }

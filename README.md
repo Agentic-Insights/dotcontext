@@ -81,7 +81,7 @@ All tools automatically use the `.context` directory in your project root unless
 
 ## Learn More About CCS
 
-- 📺 [Watch the CCS Introduction Video](https://youtu.be/g4YuNoLQ1zI)
+- 📺 [Watch the CCS Introduction Video](https://youtu.be/6icquh4thCw)
 - 📄 [Read the CCS RFC on SubStack](https://agenticinsights.substack.com/p/codebase-context-specification-rfc)
 - 📚 [CCS GitHub Repository](https://github.com/Agentic-Insights/codebase-context-spec)
 
@@ -124,4 +124,3 @@ Contributions are welcome! Please ensure you follow our contribution guidelines 
 ## License
 
 MIT
-

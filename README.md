@@ -4,27 +4,44 @@ A convention developers can all easily adopt to capture and communicate the cont
 
 ## Overview
 
-This package provides two main components under a single npm package:
+This package provides a comprehensive system for managing and leveraging codebase context through two main components:
 
-1. **CLI Tool (`dotcontext`)**: A command-line interface for managing your codebase context. Use this to initialize, validate, and maintain your `.context` directory structure:
+1. **CLI Tool (`dotcontext`)**: A command-line interface that helps developers:
+   - Initialize and structure context documentation
+   - Validate context files against the CCS specification
+   - Generate and manage architectural diagrams
+   - Maintain consistent documentation standards
+   - Lint context files for best practices
 
-   ```bash
-   .context/
-   ├── index.md     (required)
-   ├── docs.md      (optional)
-   ├── diagrams/    (optional)
-   .contextignore (optional)
-   ```
+2. **MCP Server (`dotcontext-mcp`)**: An integration layer that enables AI tools to understand your codebase by:
+   - Providing programmatic access to context information
+   - Exposing architectural diagrams and documentation
+   - Enabling automated context validation
+   - Supporting tools like [Cline](https://codebasecontext.org/tools/code-generation/cline) in making informed decisions about your code
 
-2. **MCP Server (`dotcontext-mcp`)**: A Model Context Protocol server that enables AI coding agents to interact with your codebase context. This allows tools like [Cline](https://codebasecontext.org/tools/code-generation/cline) to automatically read and understand your project's architecture and context.
-
-Both components work together to help you maintain and leverage the [Codebase Context Specification (CCS)](https://github.com/Agentic-Insights/codebase-context-spec) in your projects.
-
+Together, these components create a bridge between human-readable documentation and machine-interpretable context, making your codebase more accessible to both developers and AI tools.
 ![Codebase Context](https://raw.githubusercontent.com/Agentic-Insights/codebase-context-spec/main/img/codebase-context.png)
 
-## Usage with an MCP client
+## Usage
 
-Add this to your MCP client's configuration:
+### CLI Quick Start
+
+The CLI tool provides direct command-line access to context management features:
+
+```bash
+# Initialize a new context directory
+npx dotcontext init
+
+# Validate your context structure
+npx dotcontext validate
+
+# View available diagrams
+npx dotcontext diagrams --content
+```
+
+### MCP Integration
+
+Enable AI tools to understand your codebase by adding the MCP server to your client's configuration:
 
 ```json
 {
@@ -39,7 +56,7 @@ Add this to your MCP client's configuration:
 }
 ```
 
-If you encounter 'spawn NOENT' errors on Windows when using Cline, modify the configuration to use the full path to npx:
+For Windows users experiencing 'spawn NOENT' errors in Cline, use this configuration:
 
 ```json
 {
@@ -54,84 +71,13 @@ If you encounter 'spawn NOENT' errors on Windows when using Cline, modify the co
 }
 ```
 
-The MCP server will automatically use the current working directory of your project.
+The MCP server provides tools for AI agents to:
+- Read and parse your context documentation
+- Access architectural diagrams
+- Validate context structure
+- Extract project metadata
 
-## MCP Server Features
-
-The MCP server provides the following tools:
-
-### init
-Initialize new context directory and ignore file
-```json
-{
-  "path": "string (defaults to .context)"
-}
-```
-
-### validate
-Validate a .context directory structure and contents
-```json
-{
-  "path": "string (defaults to .context)"
-}
-```
-
-### context
-Get context information from index.md including related modules
-```json
-{
-  "path": "string (defaults to .context)",
-  "raw": "boolean (optional, default: false)"
-}
-```
-
-### diagrams
-List available Mermaid diagrams
-```json
-{
-  "path": "string (defaults to .context)",
-  "content": "boolean (optional, default: false)"
-}
-```
-
-All tools default to using `.context` in the current directory if no path is specified.
-
-## CLI Usage
-
-The package includes a CLI tool for manual interaction. You can run it using npx:
-
-### Validate Context Directory
-
-```bash
-npx dotcontext validate [path]
-```
-
-### Initialize Context Directory
-
-```bash
-npx dotcontext init [path]
-```
-
-### List and View Diagrams
-
-```bash
-npx dotcontext diagrams [path]
-npx dotcontext diagrams --content [path]
-```
-
-### Get Context Information
-
-```bash
-npx dotcontext context [path]
-npx dotcontext context --raw [path]
-```
-
-### Lint Context Files
-
-```bash
-npx dotcontext lint [path]
-npx dotcontext lint --fix [path]
-```
+All tools automatically use the `.context` directory in your project root unless specified otherwise.
 
 ## Learn More About CCS
 
@@ -178,3 +124,4 @@ Contributions are welcome! Please ensure you follow our contribution guidelines 
 ## License
 
 MIT
+

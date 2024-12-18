@@ -1,0 +1,37 @@
+%%{init: { 'theme': 'dark' } }%%
+sequenceDiagram
+    participant Dev as Developer
+    participant DC as .context/
+    participant MCP as MCP Server
+    participant AI as AI Assistant
+
+    rect rgba(50, 50, 50, 0.5)
+        Note over Dev,AI: Initial Setup
+        Dev->>DC: Create context structure
+        Dev->>DC: Add documentation
+        Dev->>DC: Create diagrams
+    end
+
+    rect rgba(50, 50, 50, 0.5)
+        Note over Dev,AI: Development Flow
+        Dev->>AI: Start new task
+        AI->>MCP: Request context
+        MCP->>DC: Read context
+        DC-->>MCP: Project context
+        MCP-->>AI: Structured information
+        Note over AI: AI processes<br/>complete context
+        AI-->>Dev: Informed assistance
+        Dev->>DC: Update context
+    end
+    
+    rect rgba(50, 50, 50, 0.5)
+        Note over Dev,AI: Continuous Learning
+        loop Project Evolution
+            Dev->>DC: Update documentation
+            AI->>MCP: Get fresh context
+            MCP->>DC: Read updates
+            DC-->>AI: Latest context
+        end
+    end
+
+    Note over Dev,AI: Project Evolution

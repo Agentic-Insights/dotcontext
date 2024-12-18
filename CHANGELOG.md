@@ -1,3 +1,12 @@
+## [1.3.6](https://github.com/Agentic-Insights/dotcontext/compare/v1.3.5...v1.3.6) (2024-12-17)
+
+
+### Bug Fixes
+
+* collector ([ec3fa71](https://github.com/Agentic-Insights/dotcontext/commit/ec3fa71eee2685597f92107b5d3d559d03b3597c))
+* failing test fixed ([c861532](https://github.com/Agentic-Insights/dotcontext/commit/c861532f6857d3923577b9d2165b7b4631925951))
+* get the proper context from index.md ([bcde836](https://github.com/Agentic-Insights/dotcontext/commit/bcde836f8d968dfb1743a16999e666a034cdbbf6))
+
 ## [1.3.5](https://github.com/Agentic-Insights/dotcontext/compare/v1.3.4...v1.3.5) (2024-12-17)
 
 ## [1.3.4](https://github.com/Agentic-Insights/dotcontext/compare/v1.3.3...v1.3.4) (2024-12-16)

@@ -24,6 +24,7 @@ contextdocs:
   - name: Model Context Protocol (MCP)
     relationship: Core protocol implemented by this project
     resources:
+      - LLM Full docs: https://modelcontextprotocol.io/llms-full.txt
       - Official Documentation: https://modelcontextprotocol.io/docs/concepts/architecture
       - TypeScript SDK: https://github.com/modelcontextprotocol/typescript-sdk
 ---

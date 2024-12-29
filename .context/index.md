@@ -1,64 +1,102 @@
 ---
-module-name: Codebase Context CLI
-version: 0.1.0
-description: MCP Server and a CLI tool for managing and validating dotcontext (.context) directories.
+# Basic project information
+module-name: dotcontext
+version: 1.3.6
+description: A tool for providing AI coding agents with structured project context
+
+# Technical stack
 technologies:
-  - MCP Server
   - Node.js
   - TypeScript
-  - Commander.js
+  - Model Context Protocol (MCP)
+
+# Development conventions
 conventions:
-  - Follow TypeScript best practices
-  - Use Commander.js for CLI implementation
-  - Implement semantic versioning
-  - Write unit tests for all features
+  - ESLint + Prettier
+  - Conventional Commits
+  - Semantic Release
+
+# Architecture details
 architecture:
-  style: IDE Utilities via npx/npm
+  style: CLI Tool + MCP Server
   components:
-    - Content Collector - helps build a prompt from unstructured data in main module and submodules (core prompt generation functionality)
-    - Context Generator - supports the init commands and generates a starter template (analagous to git init)
-    - Context Validator
-    - Context Linter
+    - name: CLI Interface
+      description: Provides command-line tools for managing context
+    - name: MCP Server
+      description: Exposes context functionality to AI assistants
+    - name: Context Generator
+      description: Creates and manages context directory structure
+  patterns:
+    - name: Command Pattern
+      usage: CLI command organization
+    - name: MCP Protocol
+      usage: Standardized AI communication
+
+# Development information
 development:
-  setup-steps:
-    - Clone the repository
-    - Install dependencies with `npm install`
-    - Build with `npm run build`
-    - Link locally with `npm link`
+  setup:
+    - npm install
+    - npm run build
+    - npm link (for local development)
+  testing:
+    framework: Jest
+    coverage: Comprehensive test coverage
+  deployment:
+    platform: npm package
+    pipeline: GitHub Actions
+
+# Business context
 business-requirements:
-  - Must provide an easy-to-use CLI interface
-  - Should validate .context directories against the CCS spec
-  - Must help developers create and maintain compliant context documentation
+  - Standardized project context for AI tools
+  - Easy integration with AI coding agents
+  - Maintainable documentation structure
+
+# Quality assurance
 quality-assurance:
-  - Testing framework: Jest
-  - Code coverage target: 90%
-deployment:
-  - Platform: npm registry
-  - CICD: GitHub Actions
+  testing-strategy:
+    - Unit tests with Jest
+    - Integration tests for MCP server
+    - CLI command testing
+  code-quality:
+    - TypeScript for type safety
+    - Automated versioning
+    - Modular architecture
+
+# AI tool configuration
 permissions:
   allow-ai-modifications: true
 ---
 
-# Codebase Context MCP & CLI
+# Project Documentation
 
-A command-line interface tool for managing and validating codebase context specifications. This tool helps developers implement the Codebase Context Specification (CCS) effectively by providing utilities for creation, validation, and maintenance of `.context` directories. It also provides your tools with an MCP server that lets them pull in the .context into your context window. T
+## Overview
 
-## Key Features
+dotcontext is a tool designed to help AI coding agents better understand project context through a standardized documentation structure. It emerged from the common pattern of developers sharing README files with AI assistants to help them understand projects before starting tasks.
 
-- Create new `.context` directories with proper structure
-- Validate existing `.context` directories against the CCS spec
-- Generate `.contextignore` files with sensible defaults
-- Lint context files for compliance and best practices
+## Architecture Details
 
-## Project Goals
+### Component Interactions
 
-1. Help save / use summaries and descriptions for your coding agent relevant to your repositories
-2. Help standardize the implementation of the CCS across projects letting AI understand across repositories
-3. Facilitate better documentation practices in development teams
+The project consists of several key components:
 
-## Architecture
+1. CLI Interface
+   - Provides commands for managing context
+   - Handles initialization and validation
 
-Supports basic functions through CLI and MCP interfaces.
+2. MCP Server
+   - Implements Model Context Protocol
+   - Exposes context functionality to AI tools
+   - Handles context queries and updates
 
-See the [architecture diagram](diagrams/architecture.mmd) for a visual representation of how the MCP server exposes tools that interact with the core components. The Context Manager acts as a central coordinator, leveraging the Validator and Linter as needed.
+3. Context Generator
+   - Creates standardized directory structure
+   - Manages documentation templates
+   - Handles context file generation
+
+### Design Decisions
+
+- **TypeScript**: Chosen for type safety and better development experience
+- **MCP Protocol**: Standardizes communication between AI tools and context
+- **Modular Architecture**: Separates concerns between CLI, server, and generation
+- **File-based Storage**: Simple, git-friendly documentation storage
 

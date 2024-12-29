@@ -1,3 +1,10 @@
+## [1.3.7](https://github.com/Agentic-Insights/dotcontext/compare/v1.3.6...v1.3.7) (2024-12-29)
+
+
+### Bug Fixes
+
+* make release more robust ([7f22a7d](https://github.com/Agentic-Insights/dotcontext/commit/7f22a7df657e0898f14a9ff862d38d66e85c6ca0))
+
 ## [1.3.6](https://github.com/Agentic-Insights/dotcontext/compare/v1.3.5...v1.3.6) (2024-12-17)
 
 

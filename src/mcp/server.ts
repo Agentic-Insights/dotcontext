@@ -142,19 +142,19 @@ export class DotContextServer {
         const { name } = request.params;
 
         switch (name) {
-          case 'init':
-            return handleInit(request);
-          case 'validate':
-            return handleValidate(request);
-          case 'context':
-            return handleContext(request, this.contextManager);
-          case 'diagrams':
-            return handleDiagrams(request);
-          default:
-            throw new McpError(
-              ErrorCode.MethodNotFound,
-              `Unknown tool: ${name}`
-            );
+        case 'init':
+          return handleInit(request);
+        case 'validate':
+          return handleValidate(request);
+        case 'context':
+          return handleContext(request, this.contextManager);
+        case 'diagrams':
+          return handleDiagrams(request);
+        default:
+          throw new McpError(
+            ErrorCode.MethodNotFound,
+            `Unknown tool: ${name}`
+          );
         }
       } catch (error) {
         return {

@@ -24,6 +24,14 @@ jobs:
         with:
           node-version: "18.x"
           
+      - name: Cache node_modules
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: node-modules-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            node-modules-${{ runner.os }}-
+            
       - name: Install dependencies
         run: npm ci
         
@@ -32,6 +40,19 @@ jobs:
         
       - name: Test
         run: npm test
+        
+      - name: Lint
+        run: npm run lint
+        
+      - name: Verify build artifacts
+        run: |
+          node dist/index.js --version
+          
+      - name: Verify TypeScript types
+        run: npx -y tsc --noEmit
+        
+      - name: Check for outdated dependencies
+        run: npx -y npm-check-updates
         
       - name: Release
         env:

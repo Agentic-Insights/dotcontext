@@ -6,6 +6,7 @@ import {
   ListToolsRequestSchema,
   McpError,
 } from '@modelcontextprotocol/sdk/types.js';
+import { format } from 'util';
 import { ContextManager } from '../core.js';
 import { handleInit } from './handlers/init.js';
 import { handleValidate } from './handlers/validate.js';
@@ -13,10 +14,22 @@ import { handleContext } from './handlers/context.js';
 import { handleDiagrams } from './handlers/diagrams.js';
 import { dirname, resolve } from 'path';
 import { fileURLToPath } from 'url';
+import { readFileSync } from 'fs';
 
 export class DotContextServer {
   private server: Server;
   private contextManager: ContextManager;
+
+  private log(level: string, message: string, context?: Record<string, unknown>) {
+    const timestamp = new Date().toISOString();
+    const logData = {
+      timestamp,
+      level,
+      message,
+      ...context
+    };
+    console.error(format(logData));
+  }
 
   constructor() {
     // Get the directory of the executed script
@@ -25,16 +38,26 @@ export class DotContextServer {
     // Go up two directories from dist/mcp/server.js to get to the project root
     const projectRoot = resolve(__dirname, '..', '..');
 
-    // Log paths for debugging
-    console.error('Server CWD:', process.cwd());
-    console.error('Server __dirname:', __dirname);
-    console.error('Server projectRoot:', projectRoot);
-    console.error('Server process.argv:', process.argv);
+    // Log initialization details
+    this.log('info', 'Initializing server', {
+      cwd: process.cwd(),
+      dirname: __dirname,
+      projectRoot,
+      argv: process.argv
+    });
+
+    // Resolve and log package.json version
+    const packageJsonPath = resolve(__dirname, '../../../package.json');
+    const version = JSON.parse(readFileSync(packageJsonPath, 'utf-8')).version;
+    this.log('info', 'Loaded package version', {
+      packageJsonPath,
+      version
+    });
 
     this.server = new Server(
       {
         name: 'dotcontext',
-        version: '1.3.1', // Match package.json version
+        version: version,
       },
       {
         capabilities: {
@@ -50,9 +73,11 @@ export class DotContextServer {
     
     // Error handling
     this.server.onerror = (error: Error) => {
-      // Only log actual errors, not debug info
       if (error instanceof McpError) {
-        console.error('[MCP Error]', error.message);
+        this.log('error', 'MCP Error occurred', {
+          error: error.message,
+          stack: error.stack
+        });
       }
     };
     process.on('SIGINT', async () => {
@@ -173,6 +198,6 @@ export class DotContextServer {
   async run() {
     const transport = new StdioServerTransport();
     await this.server.connect(transport);
-    console.error('Server running on stdio');
+    this.log('info', 'Server running on stdio');
   }
 }

@@ -3,7 +3,8 @@ import { Command } from 'commander';
 import { ContextManager } from './core.js';
 import path from 'path';
 import { ContextGenerator } from './lib/ContextGenerator.js';
-import pkg from '../package.json' assert { type: 'json' };
+import { readFileSync } from 'fs';
+const pkg = JSON.parse(readFileSync(new URL('../package.json', import.meta.url), 'utf-8'));
 
 const program = new Command();
 const contextManager = new ContextManager();
